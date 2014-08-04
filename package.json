@@ -1,0 +1,7 @@
+{
+  "name": "ttttt",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "tcp terminal tic tac toe",
+  "dependencies": {}
+}
