@@ -53,8 +53,11 @@ Game.prototype = {
     this.players.X ? this.players.O = p : this.players.X = p;
    },
 
-  players: function() {
-    return { p1: this.p1,
-             p2: this.p2 };
+  toString: function() {
+    return this.board.reduce(function(str, piece, square) {
+      if (square % 3 === 2 && square !== 8) return str + piece + ' \n-----------\n ';
+      if (square === 8) return str + piece;
+      return str + piece + ' | ';
+    }, ' ');
   }
 };
