@@ -12,8 +12,8 @@ Game.prototype = {
    */
 
   play: function(square) {
-    if (!this.inBounds(square)) throw new RangeError(square + ' not in [0, 8]');
-    if (!this.empty(square)) throw new Error('Square ' + square + ' occupied');
+    if (!inBounds(this.board, square)) throw new RangeError(square + ' not in [0, 8]');
+    if (!empty(this.board, square)) throw new Error('Square ' + square + ' occupied');
 
     var piece = this.currentTurn();
     this.board[square] = piece;
