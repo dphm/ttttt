@@ -21,14 +21,37 @@ Game.prototype = {
                         square: square });
   },
 
-  inBounds: function(square) {
-    if (square >= 0 && square <= 8) return true;
-    return false;
+  xSquares: function() {
+    return strip(this.board.map(function(piece, square) {
+      if (piece === 'X') return square;
+    }));
   },
 
-  empty: function(square) {
-    if (this.board[square] === ' ') return true;
-    return false;
+  oSquares: function() {
+    return strip(this.board.map(function(piece, square) {
+      if (piece === 'O') return square;
+    }));
+  },
+
+  win: function(squares) {
+    var wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]];
+
+    return wins.some(function(win) {
+      return win.every(function(square) {
+        return contains(squares, square);
+      });
+    });
+  },
+
+  winner: function() {
+    if (this.win(this.xSquares())) return 'X';
+    if (this.win(this.oSquares())) return 'O';
+  },
+
+  over: function() {
+    return this.board.filter(blank).length === 0;
   },
 
   /**
