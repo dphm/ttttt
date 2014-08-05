@@ -56,7 +56,7 @@ Game.prototype = {
   toString: function() {
     return this.board.reduce(function(str, piece, square) {
       if (square % 3 === 2 && square !== 8) return str + piece + ' \n-----------\n ';
-      if (square === 8) return str + piece;
+      if (square === 8) return str + piece + ' \n';
       return str + piece + ' | ';
     }, ' ');
   }
