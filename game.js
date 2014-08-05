@@ -61,3 +61,28 @@ Game.prototype = {
     }, ' ');
   }
 };
+
+/**
+ * Array helpers
+ */
+
+function blank(el) {
+  return el === ' ';
+}
+
+function empty(array, i) {
+  return blank(array[i]);
+}
+
+function inBounds(array, i) {
+  if (i >= 0 && i < array.length) return true;
+  return false;
+}
+
+function strip(array) {
+  return array.filter(function(x) { return x !== undefined; } );
+}
+
+function contains(array, el) {
+  return array.indexOf(el) > -1;
+}
