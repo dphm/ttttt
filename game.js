@@ -48,6 +48,7 @@ Game.prototype = {
   winner: function() {
     if (this.win(this.xSquares())) return 'X';
     if (this.win(this.oSquares())) return 'O';
+    if (this.over()) return 'TIE';
   },
 
   over: function() {
