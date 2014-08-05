@@ -1,5 +1,5 @@
-function Game(p1) {
-  this.p1 = p1;
+function Game() {
+  this.players = {};
   this.board = [' ', ' ', ' ',
                 ' ', ' ', ' ',
                 ' ', ' ', ' '];
@@ -48,8 +48,9 @@ Game.prototype = {
    * Player helpers
    */
 
-  join: function(p2) {
-    this.p2 = p2;
+  join: function(p) {
+    if (this.players.X && this.players.O) throw new Error('Full game');
+    this.players.X ? this.players.O = p : this.players.X = p;
    },
 
   players: function() {
