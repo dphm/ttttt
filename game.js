@@ -33,6 +33,16 @@ Game.prototype = {
     }));
   },
 
+  emptySquares: function() {
+    return strip(this.board.map(function(piece, square) {
+      if (blank(piece)) return square;
+    }));
+  },
+
+  nextEmptySquare: function() {
+    return this.emptySquares()[0];
+  },
+
   win: function(squares) {
     var wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
                 [0, 3, 6], [1, 4, 7], [2, 5, 8],
