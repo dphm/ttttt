@@ -34,3 +34,23 @@ function minimax(game) {
     return minUtility;
   }
 }
+
+function bestAction(game) {
+  var i = 0;
+  var utilities = game.reachableGames().map(minimax);
+  if (game.currentTurn() === 'X') {
+    i = utilities.indexOf(arrayMax(utilities));
+  } else {
+    i = utilities.indexOf(arrayMin(utilities));
+  }
+  console.log(utilities);
+  return game.emptySquares()[i];
+}
+
+function arrayMax(array) {
+  return Math.max.apply(null, array);
+}
+
+function arrayMin(array) {
+  return Math.min.apply(null, array);
+}
