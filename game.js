@@ -1,4 +1,6 @@
 ;(function(exports) {
+  var minimax = require('./minimax');
+
   function Game() {
     this.players = {};
     this.board = [' ', ' ', ' ',
@@ -20,6 +22,11 @@
       this.board[square] = piece;
       this.history.push({ piece: piece,
                           square: square });
+      return this;
+    },
+
+    cheat: function() {
+      this.play(minimax.bestAction(this));
       return this;
     },
 
