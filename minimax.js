@@ -1,4 +1,6 @@
 ;(function(exports) {
+  utilities = {};
+
   function utility(game) {
     var winner = game.winner();
     if (winner === 'X') return 1;
@@ -7,7 +9,12 @@
   }
 
   function minimax(game) {
-    if (game.over()) return utility(game);
+    if (game in utilities) return utilities[game];
+    if (game.over()) {
+      var u = utility(game);
+      utilities[game] = u;
+      return u;
+    }
     var actions = game.emptySquares();
     if (game.currentTurn() === 'X') {
       var maxUtility = Number.NEGATIVE_INFINITY;
@@ -19,6 +26,7 @@
           maxAction = action;
         }
       });
+      utilities[game] = maxUtility;
       return maxUtility;
     } else {
       var minUtility = Number.POSITIVE_INFINITY;
@@ -30,6 +38,7 @@
           minAction = action;
         }
       });
+      utilities[game] = minUtility;
       return minUtility;
     }
   }
