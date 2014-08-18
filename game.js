@@ -15,6 +15,7 @@
      */
 
     play: function(square) {
+      if (this.over()) throw new Error('Game is already over');
       if (!inBounds(this.board, square)) throw new RangeError(square + ' not in [0, 8]');
       if (!empty(this.board, square)) throw new Error('Square ' + square + ' occupied');
 
