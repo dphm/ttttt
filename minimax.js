@@ -12,24 +12,24 @@
     if (game.currentTurn() === 'X') {
       var maxUtility = Number.NEGATIVE_INFINITY;
       var maxAction = actions[0];
-      for (var i = 0; i < actions.length; i++) {
-        var u = minimax(game.copy().play(actions[i]));
+      actions.forEach(function(action) {
+        var u = minimax(game.copy().play(action));
         if (u >= maxUtility) {
           maxUtility = u;
-          maxAction = actions[i];
+          maxAction = action;
         }
-      }
+      });
       return maxUtility;
     } else {
       var minUtility = Number.POSITIVE_INFINITY;
       var minAction = actions[0];
-      for (var i = 0; i < actions.length; i++) {
-        var u = minimax(game.copy().play(actions[i]));
+      actions.forEach(function(action) {
+        var u = minimax(game.copy().play(action));
         if (u <= minUtility) {
           minUtility = u;
-          minAction = actions[i];
+          minAction = action;
         }
-      }
+      });
       return minUtility;
     }
   }
